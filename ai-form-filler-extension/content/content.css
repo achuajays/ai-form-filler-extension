@@ -1,0 +1,130 @@
+/* AI Fill Floating Button */
+.ai-fill-btn {
+    position: absolute;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #6D8196 0%, #4A4A4A 100%);
+    border: 1px solid #6D8196;
+    border-radius: 20px;
+    color: #FFFFE3;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.ai-fill-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    border-color: #FFFFE3;
+}
+
+.ai-fill-btn:active {
+    transform: translateY(0);
+}
+
+.ai-fill-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.ai-fill-btn.processing {
+    cursor: wait;
+    opacity: 0.8;
+}
+
+.ai-fill-btn.error {
+    background: #FF6B35;
+    border-color: #FF6B35;
+}
+
+/* AI Fill Trigger Icon (Inside Input) */
+.ai-trigger-btn {
+    position: absolute;
+    z-index: 10000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    /* Small icon size */
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #6D8196;
+    transition: all 0.2s ease;
+    opacity: 0.6;
+}
+
+.ai-trigger-btn:hover {
+    color: #00D4AA;
+    /* Active color */
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.ai-trigger-btn svg {
+    width: 18px;
+    height: 18px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.ai-trigger-btn.processing {
+    animation: pulse 1s infinite;
+    cursor: wait;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Input Wrapper for Relative Positioning */
+.ai-input-wrapper {
+    position: relative !important;
+    display: inline-block !important;
+    /* Preserve layout flow */
+    width: 100% !important;
+    /* Ensure wrapper takes full width if needed */
+}
+
+/* Spinner */
+.spinner {
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(109, 129, 150, 0.3);
+    border-radius: 50%;
+    border-top-color: #6D8196;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Form Highlight */
+form.ai-form-highlight {
+    outline: 2px dashed #6D8196;
+    outline-offset: 4px;
+    border-radius: 4px;
+}

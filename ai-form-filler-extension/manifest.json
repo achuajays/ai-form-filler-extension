@@ -1,0 +1,33 @@
+{
+    "manifest_version": 3,
+    "name": "AI Form Filler",
+    "version": "1.0.0",
+    "description": "Intelligent form auto-filling powered by Groq llama-4-scout",
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage",
+        "tabs"
+    ],
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_title": "AI Form Filler"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content/content.js"
+            ],
+            "css": [
+                "content/content.css"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "background": {
+        "service_worker": "background/service-worker.js"
+    }
+}

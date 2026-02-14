@@ -1,0 +1,11 @@
+.env
+form_filler.db
+__pycache__/*
+ai-form-filler-backend/services/__pycache__
+.venv
+extention-ui.pen
+ai-form-filler-backend\__pycache__
+ai-form-filler-backend\__pycache__
+ai-form-filler-backend\venv
+.agent
+.agents
