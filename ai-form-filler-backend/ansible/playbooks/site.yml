@@ -1,0 +1,9 @@
+---
+- name: Configure and Deploy Application
+  hosts: app_servers
+  become: yes
+
+  roles:
+    - common
+    - docker
+    - app

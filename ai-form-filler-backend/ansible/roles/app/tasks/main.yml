@@ -1,0 +1,21 @@
+---
+- name: Create app directory
+  file:
+    path: /opt/ai-form-filler
+    state: directory
+    mode: '0755'
+
+- name: Copy docker-compose file
+  copy:
+    src: ../../../docker-compose.yml
+    dest: /opt/ai-form-filler/docker-compose.yml
+
+- name: Copy .env file
+  copy:
+    src: ../../../.env
+    dest: /opt/ai-form-filler/.env
+
+- name: Start Application Container
+  shell: docker-compose up -d --build
+  args:
+    chdir: /opt/ai-form-filler

@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: ai-form-filler-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./form_filler.db:/app/form_filler.db
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

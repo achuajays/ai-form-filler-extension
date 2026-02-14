@@ -1,0 +1,63 @@
+pipeline {
+    agent { label 'docker' }
+
+    environment {
+        // Docker registry credentials (configure in Jenkins)
+        DOCKER_CREDS = credentials('docker-hub-credentials')
+        IMAGE_NAME = "your-dockerhub-username/ai-form-filler"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                // Placeholder for tests (e.g., pytest)
+                // sh 'pytest'
+                echo 'Skipping tests for now...'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
+                sh "docker tag ${IMAGE_NAME}:${BUILD_NUMBER} ${IMAGE_NAME}:latest"
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                branch 'main'
+            }
+            steps {
+                // Example deployment step using Ansible or pushing to registry
+                echo 'Deploying to production...'
+                // sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}"
+                // sh "docker push ${IMAGE_NAME}:${BUILD_NUMBER}"
+                // sh "docker push ${IMAGE_NAME}:latest"
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
